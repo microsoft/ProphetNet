@@ -311,7 +311,7 @@ Results of [another data split](https://aclweb.org/anthology/D18-1424), which us
 
 ### Checkpoint
 
-- ProphetNet-large-160GB (fine-tuned on SQuAD with 5 epochs) [[link]](https://drive.google.com/file/d/1IiutfQp_Q5ggQErcdKd2byuAEnwzC09I/view?usp=sharing) 
+- ProphetNet-large-16GB (fine-tuned on SQuAD with 5 epochs) [[link]](https://drive.google.com/file/d/1IiutfQp_Q5ggQErcdKd2byuAEnwzC09I/view?usp=sharing) 
 
 ## Repo Reference
 This repo is partially referred to Fairseq-v0.9.0 and MASS.
