@@ -154,6 +154,16 @@ class NgramTransformerProphetModel(FairseqEncoderDecoderModel):
                 decoder_token_weight[2] = decoder_token_weight[102]
                 states['encoder.embed_tokens.weight'] = encoder_token_weight
                 states['decoder.embed_tokens.weight'] = decoder_token_weight
+            for position_name, target_position_length in [('encoder.embed_positions.weight', model.encoder.embed_positions.weight.size(0)), \
+                    ('decoder.embed_positions.weight', model.decoder.embed_positions.weight.size(0))]:
+                if states[position_name].size(0) < target_position_length:
+                    _index = torch.arange(states[position_name].size(1))
+                    expend_position_states = states[position_name].clone()
+                    while states[position_name].size(0) < target_position_length:
+                        _index = torch.cat((_index[1:],_index[:1]), dim=0)
+                        states[position_name] = torch.cat([states[position_name], expend_position_states[:,_index]], dim=0)
+                if states[position_name].size(0) > target_position_length:
+                    states[position_name] = states[position_name][:target_position_length]
             model.load_state_dict(states)
             args.load_from_pretrained_model = None  # Clear this param
 
