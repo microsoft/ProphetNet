@@ -332,7 +332,10 @@ def bert_uncased_tokenize(fin, fout):
         fout.write('{}\n'.format(new_line))
 bert_uncased_tokenize('train.src', 'tokenized_train.src')
 bert_uncased_tokenize('train.tgt', 'tokenized_train.tgt')
-...
+bert_uncased_tokenize('valid.src', 'tokenized_valid.src')
+bert_uncased_tokenize('valid.tgt', 'tokenized_valid.tgt')
+bert_uncased_tokenize('test.src', 'tokenized_test.src')
+bert_uncased_tokenize('test.tgt', 'tokenized_test.tgt')
 ```
 Binirize it with fairseq-preprocess
 ```
@@ -346,7 +349,7 @@ fairseq-preprocess \
 ```
 Fine tune with fairseq-train.  
 --disable-ngram-loss：only keep the next first token loss.  
---load-sep: load pretrained seperation token into [X_SEP]. (Each sample take one line, you can use [X_SEP] to seperate sentences in one line. CNN/DM finetuning used it.)
+--load-sep: load pretrained seperation token into [X_SEP]. (Each sample take one line, you can use [X_SEP] to seperate sentences in one line. CNN/DM finetuning used it.)  
 --ngram: number of future tokens to predict. Provided pretrained checkpoint predicts 2 future tokens, and you should set it as 2 to be consistent.  
 ```
 DATA_DIR=processed
