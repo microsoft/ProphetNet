@@ -313,6 +313,81 @@ Results of [another data split](https://aclweb.org/anthology/D18-1424), which us
 
 - ProphetNet-large-16GB (fine-tuned on SQuAD with 5 epochs) [[link]](https://drive.google.com/file/d/1IiutfQp_Q5ggQErcdKd2byuAEnwzC09I/view?usp=sharing) 
 
+## Fine tune on other datasets
+
+Similarly, the procedure includes 1) Tokenize, 2) Binarize, 3) Finetune, 4) Inference.  
+ProphetNet is implemented on base of Fairseq, which you can refer to [Fairseq Mannual](https://fairseq.readthedocs.io/en/latest/command_line_tools.html).  
+Prepare your train.src, train.tgt, and valid, test sets. Input and output of one sample are placed in the .src and .tgt file with one line.    
+Use bert-uncased tokenizer to tokenize your data into word piece.
+```
+from pytorch_transformers import BertTokenizer
+
+def bert_uncased_tokenize(fin, fout):
+    fin = open(fin, 'r', encoding='utf-8')
+    fout = open(fout, 'w', encoding='utf-8')
+    tok = BertTokenizer.from_pretrained('bert-base-uncased')
+    for line in fin:
+        word_pieces = tok.tokenize(line.strip())
+        new_line = " ".join(new)
+        fout.write('{}\n'.format(new_line))
+bert_uncased_tokenize('train.src', 'tokenized_train.src')
+bert_uncased_tokenize('train.tgt', 'tokenized_train.tgt')
+...
+```
+Binirize it with fairseq-preprocess
+```
+fairseq-preprocess \
+--user-dir prophetnet \
+--task translation_prophetnet \
+--source-lang src --target-lang tgt \
+--trainpref tokenized_train --validpref tokenized_valid --testpref tokenized_test \
+--destdir processed --srcdict vocab.txt --tgtdict vocab.txt \
+--workers 20
+```
+Fine tune with fairseq-train.  
+--disable-ngram-loss：only keep the next first token loss.  
+--load-sep: load pretrained seperation token into [X_SEP]. (Each sample take one line, you can use [X_SEP] to seperate sentences in one line. CNN/DM finetuning used it.)
+--ngram: number of future tokens to predict. Provided pretrained checkpoint predicts 2 future tokens, and you should set it as 2 to be consistent.  
+```
+DATA_DIR=processed
+USER_DIR=./prophetnet
+ARCH=ngram_transformer_prophet_large
+CRITERION=ngram_language_loss
+SAVE_DIR=./model
+TENSORBOARD_LOGDIR=./logs
+PRETRAINED_MODEL=pretrained_checkpoints/prophetnet_large_pretrained_160G_14epoch_model.pt
+
+fairseq-train \
+--fp16 \
+--user-dir $USER_DIR --task translation_prophetnet --arch $ARCH \
+--optimizer adam --adam-betas '(0.9, 0.999)' --clip-norm 0.1 \
+--lr 0.00001 --min-lr 1e-09 \
+--lr-scheduler inverse_sqrt --warmup-init-lr 1e-07 --warmup-updates 1000 \
+--dropout 0.1 --attention-dropout 0.1 --weight-decay 0.01 \
+--criterion $CRITERION --label-smoothing 0.1 \
+--update-freq 1  --max-tokens 1400 --max-sentences 7 \
+--num-workers 4 \
+--load-from-pretrained-model $PRETRAINED_MODEL \
+--ddp-backend=no_c10d --max-epoch 10 \
+--max-source-positions 512 --max-target-positions 512 \
+--skip-invalid-size-inputs-valid-test \
+--save-dir $SAVE_DIR \
+--keep-last-epochs 10 \
+--tensorboard-logdir $TENSORBOARD_LOGDIR \
+$DATA_DIR
+```
+Inference with fairseq-generate to generate targets for given processed test files. Or you can [fairseq-interactive](https://fairseq.readthedocs.io/en/latest/command_line_tools.html#fairseq-interactive) to generate answers for your typed-in text (which should also been tokenized).
+```
+BEAM=5
+LENPEN=1.5
+CHECK_POINT=./model/checkpoint5.pt
+TEMP_FILE=fairseq_outputs.txt
+OUTPUT_FILE=sorted_outputs.txt
+
+fairseq-generate qg/processed --path $CHECK_POINT --user-dir prophetnet --task translation_prophetnet --batch-size 80 --gen-subset test --beam $BEAM --num-workers 4 --no-repeat-ngram-size 3 --lenpen $LENPEN 2>&1 > $TEMP_FILE
+grep ^H $TEMP_FILE | cut -c 3- | sort -n | cut -f3- | sed "s/ ##//g" > $OUTPUT_FILE
+
+```
 ## Repo Reference
 This repo is partially referred to Fairseq-v0.9.0 and MASS.
 
