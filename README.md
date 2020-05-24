@@ -328,7 +328,7 @@ def bert_uncased_tokenize(fin, fout):
     tok = BertTokenizer.from_pretrained('bert-base-uncased')
     for line in fin:
         word_pieces = tok.tokenize(line.strip())
-        new_line = " ".join(new)
+        new_line = " ".join(word_pieces)
         fout.write('{}\n'.format(new_line))
 bert_uncased_tokenize('train.src', 'tokenized_train.src')
 bert_uncased_tokenize('train.tgt', 'tokenized_train.tgt')
