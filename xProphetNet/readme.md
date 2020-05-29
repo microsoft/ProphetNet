@@ -1,11 +1,12 @@
 # XPorphetNet
 This is the implement of FNP(Future N-grams Prediction) cross-lingual generation model for XGLUE baseline, 
 which is the cross-lingual version ProphetNet.  
-We pretrained ProphetNet on 100 languages Wikipedia corpus with 350k steps.  
+We pretrained ProphetNet on 100 languages Wikipedia corpus with 350k steps, which can be downloaded from [link](https://drive.google.com/file/d/1cNqd4DRp4_Q1ayEYz7a-_WokA0X2PXsN/view?usp=sharing).  
 To use XProphetNet:  
 1) Preprocess. Tokenize the text with provided bpe model and generate the binary file for Fairseq.  
 2) Finetune. Finetune the model with the supervised corpus, eg English News Title Generation or English Question Generation.
 3) Inference. Use finetuned checkpoint with less epoches to generate outputs for zero-shot languages, and checkpoint with more epoches for supervised language.  
+
 
 ## Dependency
 
