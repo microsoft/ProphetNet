@@ -4,7 +4,7 @@ ARCH=ngram_transformer_prophet_large
 CRITERION=ngram_language_loss
 SAVE_DIR=./models/xprophetnet_qg_en
 TENSORBOARD_LOGDIR=./models/logs_xprophetnet_qg_en
-PRETRAINED_MODEL=./models/checkpoint_12_350000.pt
+PRETRAINED_MODEL=./models/xprophetnet_wiki100_350k.pt
 
 fairseq-train \
 	--user-dir $USER_DIR --task translation_prophetnet --arch $ARCH \

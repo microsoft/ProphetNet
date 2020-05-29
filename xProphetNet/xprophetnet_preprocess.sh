@@ -1,6 +1,3 @@
-unzip ./finetune_data/NTG.zip -d ./finetune_data
-unzip ./finetune_data/QG.zip -d ./finetune_data
-
 mkdir ./finetune_data/NTG_tokenized
 mkdir ./finetune_data/QG_tokenized
 
