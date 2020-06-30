@@ -10,10 +10,10 @@ import torch.nn.functional as F
 
 from fairseq import utils
 
-from fairseq.criterions import FairseqCriterion, register_criterion 
+from fairseq.criterions import LegacyFairseqCriterion, register_criterion 
 
 @register_criterion('ngram_language_loss')
-class NgramLmLoss(FairseqCriterion):
+class NgramLmLoss(LegacyFairseqCriterion):
     """
     Implementation for the loss used in masked language model (MLM) training.
     """

@@ -25,7 +25,7 @@ class BertDictionary(Dictionary):
         bos='<s>',
         extra_special_symbols=None,
     ):
-        super().__init__(pad, eos, unk, bos, extra_special_symbols)
+        super().__init__(pad=pad, eos=eos, unk=unk, bos=bos, extra_special_symbols=extra_special_symbols)
 
     @classmethod
     def load_from_file(cls, filename):
