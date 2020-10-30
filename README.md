@@ -174,7 +174,7 @@ fairseq-train $DATA_DIR \
  
 
 ### Inference and Evaluation
-Download the evaluation scripts from [provided evaluation scripts of UniLM](https://github.com/microsoft/unilm/tree/master/src/gigaword) and put them in gigaword/eval.
+Download the evaluation scripts from [provided evaluation scripts of UniLM](https://github.com/microsoft/unilm/tree/master/unilm-v1/src/gigaword) and put them in gigaword/eval.
 The scripts of inference and evaluation are as follows:
 
 ```
