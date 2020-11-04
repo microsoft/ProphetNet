@@ -2,6 +2,7 @@
 
 This repo provides the code for reproducing the experiments in [*ProphetNet: Predicting Future N-gram for Sequence-to-Sequence Pre-training*](https://arxiv.org/pdf/2001.04063). In the paper, we propose a new pre-trained language model called ProphetNet for sequence-to-sequence learning with a novel self-supervised objective called future n-gram prediction. 
 
+We have released the ProphetNet baselines for [GLGE](arxiv/) benchmark (A New General Language Generation Evaluation Benchmark) in [here](./GLGE_baselines). Have a try! :) 
 
 ## Dependency
 - pip install torch==1.3.0  
