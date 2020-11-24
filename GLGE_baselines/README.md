@@ -16,7 +16,8 @@ This is the implement of ProphetNet [GLGE](https://arxiv.org/abs/) baseline. Mor
 - install [file2rouge](https://github.com/pltrdy/files2rouge)
 
 We also provide a docker image which contains the evaluation dependency.
-`docker run -it adsbrainwestus2.azurecr.io/glge /bin/bash`
+`docker pull yuyan2do/glge:latest`
+`docker run -it yuyan2do/glge:latest /bin/bash`
 
 ### Data Preparation
 Download the datasets from [link](https://microsoft.github.io/glge/) and move them to the `data/` folder.
