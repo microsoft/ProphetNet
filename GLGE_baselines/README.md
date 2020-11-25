@@ -6,17 +6,18 @@ This is the implement of ProphetNet [GLGE](https://arxiv.org/abs/2011.11928) bas
 
 ### Baseline Dependency
 ```
-- pip install torch==1.3.0  
-- pip install fairseq==v0.9.0
+pip install torch==1.3.0  
+pip install fairseq==v0.9.0
 ```
 ### Evaluation Dependency
 ```
-- pip install git+https://github.com/yuyan2do/Distinct-N.git
-- pip install git+https://github.com/pltrdy/pyrouge
-- pip install py-rouge
-- pip install nltk
-- install [file2rouge](https://github.com/pltrdy/files2rouge)
+pip install git+https://github.com/yuyan2do/Distinct-N.git
+pip install git+https://github.com/pltrdy/pyrouge
+pip install py-rouge
+pip install nltk
 ```
+install [file2rouge](https://github.com/pltrdy/files2rouge)
+
 We also provide a docker image which contains the evaluation dependency.
 ```
 docker pull yuyan2do/glge:latest
