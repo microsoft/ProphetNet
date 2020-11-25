@@ -63,7 +63,7 @@ Note that `script/run.sh` will train, inference, and evaluate the model in turn.
 
 The hyperparameters of training and inference can be found in `script/train_<MODEL>.sh` and `script/test_<MODEL>.sh`, respectively.
 
-If you want to only evalute the outputs, please use the following command:
+If you want to only evaluate the outputs, please use the following command:
 ```
 cd script
 python eval.py --version `<VERSION>` --dataset `<DATASET>` --generated `<OUTPUT_File_PATH>` --split dev
