@@ -16,7 +16,7 @@ pip install git+https://github.com/pltrdy/pyrouge
 pip install py-rouge
 pip install nltk
 ```
-install [file2rouge](https://github.com/pltrdy/files2rouge)
+and remember to install [file2rouge](https://github.com/pltrdy/files2rouge).
 
 We also provide a docker image which contains the evaluation dependency.
 ```
