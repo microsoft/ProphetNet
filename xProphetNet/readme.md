@@ -5,7 +5,7 @@ We pretrained ProphetNet on 100 languages Wikipedia corpus with 350k steps, whic
 To use XProphetNet:  
 1) Preprocess. Tokenize the text with provided bpe model and generate the binary file for Fairseq.  
 2) Finetune. Finetune the model with the supervised corpus, eg English News Title Generation or English Question Generation.
-3) Inference. Use finetuned checkpoint with less epoches to generate outputs for zero-shot languages, and checkpoint with more epoches for supervised language. According to the performance on dev set, for News Title Generation, we select the 18-epoch-finetuned checkpoint and 4-epoch-finetuned checkpoint for English and other zero-shot languages respectively. For Question Generation, 16 epoch for supervised English corpus and 6 epoch for zero-shoft languages.    
+3) Inference. Use finetuned checkpoint with less epoches to generate outputs for zero-shot languages, and checkpoint with more epoches for supervised language. According to the performance on dev set, for News Title Generation, we select the 18-epoch-finetuned checkpoint and 4-epoch-finetuned checkpoint for English and other zero-shot languages respectively. For Question Generation, 16 epoch for supervised English corpus and 6 epoch for zero-shot languages.    
 
 
 ## Dependency
