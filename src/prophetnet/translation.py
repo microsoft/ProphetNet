@@ -3,7 +3,7 @@
 from fairseq.tasks import register_task
 from fairseq.tasks.translation import TranslationTask
 
-from .bert_dictionary import BertDictionary
+from bert_dictionary import BertDictionary
 
 @register_task('translation_prophetnet')
 class TranslationProphetnetTask(TranslationTask):

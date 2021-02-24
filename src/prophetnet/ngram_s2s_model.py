@@ -17,8 +17,10 @@ from fairseq.modules import (
     LayerNorm,
 )
 from fairseq.modules.transformer_sentence_encoder import init_bert_params
-from .learned_positional_embedding import LearnedPositionalEmbedding
-from .ngram_multihead_attention import NgramMultiheadAttention, ngram_attention_bias
+from learned_positional_embedding import LearnedPositionalEmbedding
+from ngram_multihead_attention import NgramMultiheadAttention, ngram_attention_bias
+from hub_interface import ProphetNetHubInterface
+
 
 DEFAULT_MAX_SOURCE_POSITIONS = 512
 DEFAULT_MAX_TARGET_POSITIONS = 512
@@ -197,7 +199,7 @@ class NgramTransformerProphetModel(FairseqEncoderDecoderModel):
     def max_positions(self):
         return (self.encoder.max_positions(), self.decoder.max_positions())
 
-    def forward(self, src_tokens=None, src_lengths=None, prev_output_tokens=None, **kwargs):
+    def forward(self, src_tokens, src_lengths, prev_output_tokens, features_only=False, **kwargs):
         """
         Run the forward pass for an encoder-decoder model.
         First feed a batch of source tokens through the encoder. Then, feed the
@@ -217,8 +219,34 @@ class NgramTransformerProphetModel(FairseqEncoderDecoderModel):
                 - a dictionary with any model-specific outputs
         """
         encoder_out = self.encoder(src_tokens, src_lengths=src_lengths, **kwargs)
+        if features_only:
+            return encoder_out['encoder_out'][0,:,:], None
         decoder_out = self.decoder(prev_output_tokens, encoder_out=encoder_out, **kwargs)
         return decoder_out
+
+    @classmethod
+    def from_pretrained(
+        cls,
+        model_name_or_path,
+        checkpoint_file="model.pt",
+        data_name_or_path=".",
+        bpe="bert",
+        sample_break_mode="eos",
+        **kwargs,
+    ):
+        from fairseq import hub_utils
+
+        x = hub_utils.from_pretrained(
+            model_name_or_path,
+            checkpoint_file,
+            data_name_or_path,
+            archive_map=cls.hub_models(),
+            bpe=bpe,
+            load_checkpoint_heads=True,
+            sample_break_mode=sample_break_mode,
+            **kwargs,
+        )
+        return ProphetNetHubInterface(x["args"], x["task"], x["models"][0])
 
 
 class TransformerEncoderLayer(nn.Module):
