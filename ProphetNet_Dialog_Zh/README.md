@@ -1,30 +1,7 @@
-# ProphetNet-X
+# ProphetNet-Dialog-Zh
 
-1. This repo provides the code for reproducing the experiments in [*ProphetNet*](https://arxiv.org/pdf/2001.04063). In the paper, we propose a new pre-trained language model called ProphetNet for sequence-to-sequence learning with a novel self-supervised objective called future n-gram prediction. 
-
-2. We have released the ProphetNet baselines for [GLGE](https://github.com/microsoft/glge) benchmark ([A New General Language Generation Evaluation Benchmark](https://arxiv.org/abs/2011.11928)) in [here](./GLGE_baselines). Have a try! :) 
-
-3. We provide ProphetNet-X family models for Chinses(ProphetNet-Zh), Multi-lingual(ProphetNet-Multi), English open domain dialog(ProphetNet-Dialog), Chinese open domain dialog(ProphetNet-Dialog-Zh), code generation(ProphetNet-Code). The details are described in ProphetNet-X, which will appear soon.
-
-This repo is still developing, feel free to report bugs and we will fix them ~
-
-## What's new
-
-ProphetNet-X models are released!
-
-Try new ProphetNet pretrained models for Chinese, English Dialog, Chinese Dialog, Multi-lingual, and Code Generation.
-
-Different ProphetNet-X models have the only difference of the vocabulary file. Simply modify one model file and you can evaluate your idea with all the pretrained models and finetuning scripts!
-
-
-
-## Future updates
-1. ProphetNet pretrained models for bio-medical text.
-2. ProphetNet pretrained models for protein.
-3. New ProphetNet models for long document modeling.
-4. New algorithms for Transformer/ProphetNet to reduce inference latency with no hurt to the results.
-5. New ProphetNet models for non-auto-regressive generation.
-6. For Natural Language Understanding tasks.  
+This repo provides the pretrained Chinese generation model ProphetNet-Dialog-Zh.  
+The details are described in ProphetNet-X paper(To appear soon).
 
 ## Dependency
 - pip install torch==1.3.0  
@@ -33,61 +10,57 @@ Different ProphetNet-X models have the only difference of the vocabulary file. S
 
 ## Pre-trained Models
 
-We have released the following checkpoints for pre-trained models as described in the paper of ProphetNet-X(appear soon).
-
-ProphetNet-X is based on [ProphetNet](https://arxiv.org/pdf/2001.04063), which also serves the ProphetNet-En model.
-
-
-Recommended Checkpoints:
-- **ProphetNet-En** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_en.pt)
-- **ProphetNet-Zh** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_zh.pt)
-- **ProphetNet-Multi** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_multi.pt)
-- **ProphetNet-Dialog-En** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_dialog_en.pt)
 - **ProphetNet-Dialog-Zh** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_dialog_zh.pt)
-- **ProphetNet-Code** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_code.pt)
 
-Expired Checkpoints:
-- **ProphetNet-En-16GB** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_en_16g.pt)
-- **ProphetNet-Multi-Wiki100** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_multi_wiki100.pt)
+Notice that this is not the model deployed for XiaoIce, similar but not the same.  
+We release this model for only research purpose. You can directly use this model to generate Chinese dialog responses without finetuning.
+
+For ProphetNet-Dialog-Zh, we use the pre-training corpus from [CDialGPT](https://github.com/thu-coai/CDial-GPT) and our internal data. Specifically, we crawled 18.2 million dyadic dialogues (conversation between two persons) longer than or equal to 2 turns(one turn denotes one utterance from one person) from the [Douban group](https://www.douban.com/group) which is a popular social networking service in China. We also load the pre-trained model from ProphetNet-Zh before pre-training, which already contains external knowledge from open-domain Chinese corpus. 
+## Down-stream Tasks
+We evaluate ProphetNet-Dialog-Zh on real-world XiaoIce system with human evaluation.  
+We also report the resutls on  STC dataset, which you can use the [CDialGPT team cleaned version](https://github.com/thu-coai/CDial-GPT#evaluation).
 
 ## How to use
+
+Feed "session-1 [SEP] session-2 [SEP] ... [SEP] session-n" into the encoder, predict "session-n+1" from the decoder.
 
 The procedure includes 1) Tokenize, 2) Binarize, 3) Finetune, 4) Inference.  
 ProphetNet is implemented on base of Fairseq, which you can refer to [Fairseq Mannual](https://fairseq.readthedocs.io/en/latest/command_line_tools.html).  
 
-**For all the ProphetNet-X models, the only difference is the dictionary, which means different Tokenizers should be used.**
-
-We take ProphetNet-En for example:
-
 Tokenize. Prepare your train.src, train.tgt, and valid, test sets. Input and output of one sample are placed in the .src and .tgt file with one line.    
 Use bert-uncased tokenizer to tokenize your data into word piece. 
 ```
-from transformers import BertTokenizer
+import json
+import tqdm
+import transformers
 
 
-def bert_uncased_tokenize(fin, fout):
-    fin = open(fin, 'r', encoding='utf-8')
-    fout = open(fout, 'w', encoding='utf-8')
-    tok = BertTokenizer.from_pretrained('bert-base-uncased')
-    for line in fin:
-        word_pieces = tok.tokenize(line.strip())
-        new_line = " ".join(word_pieces)
-        fout.write('{}\n'.format(new_line))
-bert_uncased_tokenize('train.src', 'tokenized_train.src')
-bert_uncased_tokenize('train.tgt', 'tokenized_train.tgt')
-bert_uncased_tokenize('valid.src', 'tokenized_valid.src')
-bert_uncased_tokenize('valid.tgt', 'tokenized_valid.tgt')
-bert_uncased_tokenize('test.src', 'tokenized_test.src')
-bert_uncased_tokenize('test.tgt', 'tokenized_test.tgt')
+fin_train_dev = open('finetune/STC.json', 'r', encoding='utf-8')
+fout_train_src_tokenized = open('tokenized_train.src', 'w', encoding='utf-8')
+fout_train_tgt_tokenized = open('tokenized_train.tgt', 'w', encoding='utf-8')
+
+tokenizer = transformers.BertTokenizer("my_chinese_tokenizer/vocab_for_huggingface.txt")
+train_dev = json.load(fin_train_dev)
+train_list = train_dev['train']
+for data in tqdm.tqdm(train_list):
+	assert len(data) == 2
+	prev = data[0].replace(" ", "").lower()
+	answer = data[1].replace(" ", "").lower()
+	fout_train_src.write("{}\n".format(prev))
+	fout_train_tgt.write("{}\n".format(answer))
+	prev_tokenized = ' '.join(tokenizer.tokenize(prev))
+	answer_tokenized = ' '.join(tokenizer.tokenize(answer))
+	fout_train_src_tokenized.write("{}\n".format(prev_tokenized))
+	fout_train_tgt_tokenized.write("{}\n".format(answer_tokenized))
 ```
 Binirize it with fairseq-preprocess
 ```
 fairseq-preprocess \
---user-dir prophetnet \
+--user-dir ./prophetnet \
 --task translation_prophetnet \
 --source-lang src --target-lang tgt \
 --trainpref tokenized_train --validpref tokenized_valid --testpref tokenized_test \
---destdir processed --srcdict vocab.txt --tgtdict vocab.txt \
+--destdir processed --srcdict prophetnet_chinese_dict/vocab_for_fairseq.txt --tgtdict prophetnet_chinese_dict/vocab_for_fairseq.txt \
 --workers 20
 ```
 Fine tune with fairseq-train.  
@@ -101,7 +74,7 @@ ARCH=ngram_transformer_prophet_large
 CRITERION=ngram_language_loss
 SAVE_DIR=./model
 TENSORBOARD_LOGDIR=./logs
-PRETRAINED_MODEL=pretrained_checkpoints/prophetnet_en.pt
+PRETRAINED_MODEL=pretrained_checkpoints/prophetnet_dialog_zh.pt
 
 fairseq-train \
 --fp16 \

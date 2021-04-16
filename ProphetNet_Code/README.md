@@ -1,93 +1,50 @@
-# ProphetNet-X
+# ProphetNet-Zh
 
-1. This repo provides the code for reproducing the experiments in [*ProphetNet*](https://arxiv.org/pdf/2001.04063). In the paper, we propose a new pre-trained language model called ProphetNet for sequence-to-sequence learning with a novel self-supervised objective called future n-gram prediction. 
-
-2. We have released the ProphetNet baselines for [GLGE](https://github.com/microsoft/glge) benchmark ([A New General Language Generation Evaluation Benchmark](https://arxiv.org/abs/2011.11928)) in [here](./GLGE_baselines). Have a try! :) 
-
-3. We provide ProphetNet-X family models for Chinses(ProphetNet-Zh), Multi-lingual(ProphetNet-Multi), English open domain dialog(ProphetNet-Dialog), Chinese open domain dialog(ProphetNet-Dialog-Zh), code generation(ProphetNet-Code). The details are described in ProphetNet-X, which will appear soon.
-
-This repo is still developing, feel free to report bugs and we will fix them ~
-
-## What's new
-
-ProphetNet-X models are released!
-
-Try new ProphetNet pretrained models for Chinese, English Dialog, Chinese Dialog, Multi-lingual, and Code Generation.
-
-Different ProphetNet-X models have the only difference of the vocabulary file. Simply modify one model file and you can evaluate your idea with all the pretrained models and finetuning scripts!
-
-
-
-## Future updates
-1. ProphetNet pretrained models for bio-medical text.
-2. ProphetNet pretrained models for protein.
-3. New ProphetNet models for long document modeling.
-4. New algorithms for Transformer/ProphetNet to reduce inference latency with no hurt to the results.
-5. New ProphetNet models for non-auto-regressive generation.
-6. For Natural Language Understanding tasks.  
+This repo provides the pretrained Chinese generation model ProphetNet-Zh.  
+The details are described in ProphetNet-X paper(To appear soon).
 
 ## Dependency
 - pip install torch==1.3.0  
-- pip install fairseq==v0.9.0
-- pip install tensorboardX==1.7  
+- pip install fairseq==v0.9.0  
+- pip install tensorboardX==1.7    
 
 ## Pre-trained Models
 
-We have released the following checkpoints for pre-trained models as described in the paper of ProphetNet-X(appear soon).
-
-ProphetNet-X is based on [ProphetNet](https://arxiv.org/pdf/2001.04063), which also serves the ProphetNet-En model.
-
-
-Recommended Checkpoints:
-- **ProphetNet-En** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_en.pt)
-- **ProphetNet-Zh** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_zh.pt)
-- **ProphetNet-Multi** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_multi.pt)
-- **ProphetNet-Dialog-En** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_dialog_en.pt)
-- **ProphetNet-Dialog-Zh** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_dialog_zh.pt)
 - **ProphetNet-Code** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_code.pt)
 
-Expired Checkpoints:
-- **ProphetNet-En-16GB** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_en_16g.pt)
-- **ProphetNet-Multi-Wiki100** [[link]](https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_multi_wiki100.pt)
+For ProphetNet-Code, we conduct pre-training on both PLs (Programming Languages) and their describing NL (Natural Language). We use the pre-training corpus provided by [CodeSearchNet](https://github.com/github/CodeSearchNet) and [CodeBERT](https://arxiv.org/pdf/2002.08155.pdf). It covers 6 programming languages, including Go, Java, Javascript, PHP, Python, and Ruby. We employ the same sentencepiece tokenizer as CodeBERT. The tokenizer is used for both PL and NL, with a vocabulary size 50,365.
 
+## Down-stream Tasks
+For now, ProphetNet-Zh is finetuned with [CodeXGLUE code summarization](https://arxiv.org/pdf/2102.04664.pdf), you can visit [this link](https://github.com/microsoft/CodeXGLUE/tree/main/Code-Text/code-to-text) to download the data.
 ## How to use
 
 The procedure includes 1) Tokenize, 2) Binarize, 3) Finetune, 4) Inference.  
 ProphetNet is implemented on base of Fairseq, which you can refer to [Fairseq Mannual](https://fairseq.readthedocs.io/en/latest/command_line_tools.html).  
 
-**For all the ProphetNet-X models, the only difference is the dictionary, which means different Tokenizers should be used.**
-
-We take ProphetNet-En for example:
-
 Tokenize. Prepare your train.src, train.tgt, and valid, test sets. Input and output of one sample are placed in the .src and .tgt file with one line.    
-Use bert-uncased tokenizer to tokenize your data into word piece. 
+Use Roberta tokenizer to tokenize your data into word piece.   
+
 ```
-from transformers import BertTokenizer
+from transformers import RobertaTokenizer
 
-
-def bert_uncased_tokenize(fin, fout):
+def prophetnet_tokenize(fin, fout):
     fin = open(fin, 'r', encoding='utf-8')
     fout = open(fout, 'w', encoding='utf-8')
-    tok = BertTokenizer.from_pretrained('bert-base-uncased')
+    tok = RobertaTokenizer.from_pretrained('microsoft/codebert-base-mlm')
     for line in fin:
         word_pieces = tok.tokenize(line.strip())
         new_line = " ".join(word_pieces)
         fout.write('{}\n'.format(new_line))
-bert_uncased_tokenize('train.src', 'tokenized_train.src')
-bert_uncased_tokenize('train.tgt', 'tokenized_train.tgt')
-bert_uncased_tokenize('valid.src', 'tokenized_valid.src')
-bert_uncased_tokenize('valid.tgt', 'tokenized_valid.tgt')
-bert_uncased_tokenize('test.src', 'tokenized_test.src')
-bert_uncased_tokenize('test.tgt', 'tokenized_test.tgt')
+
 ```
 Binirize it with fairseq-preprocess
 ```
 fairseq-preprocess \
---user-dir prophetnet \
+--user-dir ./prophetnet \
 --task translation_prophetnet \
 --source-lang src --target-lang tgt \
 --trainpref tokenized_train --validpref tokenized_valid --testpref tokenized_test \
---destdir processed --srcdict vocab.txt --tgtdict vocab.txt \
+--destdir processed --srcdict prophetnet_code_dict/vocab_code_fairseq.txt --tgtdict prophetnet_code_dict/vocab_code_fairseq.txt \
 --workers 20
 ```
 Fine tune with fairseq-train.  
@@ -101,7 +58,7 @@ ARCH=ngram_transformer_prophet_large
 CRITERION=ngram_language_loss
 SAVE_DIR=./model
 TENSORBOARD_LOGDIR=./logs
-PRETRAINED_MODEL=pretrained_checkpoints/prophetnet_en.pt
+PRETRAINED_MODEL=pretrained_checkpoints/prophetnet_code.pt
 
 fairseq-train \
 --fp16 \
@@ -134,7 +91,6 @@ fairseq-generate processed --path $CHECK_POINT --user-dir prophetnet --task tran
 grep ^H $TEMP_FILE | cut -c 3- | sort -n | cut -f3- | sed "s/ ##//g" > $OUTPUT_FILE
 
 ```
-
 ## TIPS:
 If you met problems to run fairseq-preprocess, fairseq-train and other commands, or if you want to modify the workflow/inference pipeline, 
 it's a good choice to download fairseq git repo, checkout v0.9.0, and merge our codes.   
