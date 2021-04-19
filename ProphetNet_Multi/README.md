@@ -1,7 +1,7 @@
 # ProphetNet-Multi
 
 This repo provides the pretrained multi-lingual generation model ProphetNet-multi.  
-The details are described in ProphetNet-X paper(To appear soon).
+The details are described in [ProphetNet-X paper](https://arxiv.org/abs/2104.08006).
 
 ## Dependency
 

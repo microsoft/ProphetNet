@@ -4,13 +4,13 @@
 
 2. We have released the ProphetNet baselines for [GLGE](https://github.com/microsoft/glge) benchmark ([A New General Language Generation Evaluation Benchmark](https://arxiv.org/abs/2011.11928)) in [here](./GLGE_baselines). Have a try! :) 
 
-3. We provide ProphetNet-X family models for Chinses(ProphetNet-Zh), Multi-lingual(ProphetNet-Multi), English open domain dialog(ProphetNet-Dialog), Chinese open domain dialog(ProphetNet-Dialog-Zh), code generation(ProphetNet-Code). The details are described in ProphetNet-X, which will appear soon.
+3. We provide [ProphetNet-X family models](https://arxiv.org/abs/2104.08006) for Chinses(ProphetNet-Zh), Multi-lingual(ProphetNet-Multi), English open domain dialog(ProphetNet-Dialog), Chinese open domain dialog(ProphetNet-Dialog-Zh), code generation(ProphetNet-Code). The details are described in [ProphetNet-X paper](https://arxiv.org/abs/2104.08006).
 
 This repo is still developing, feel free to report bugs and we will fix them ~
 
 ## What's new
 
-ProphetNet-X models are released!
+[ProphetNet-X models](https://arxiv.org/abs/2104.08006) are released!
 
 Try new ProphetNet pretrained models for Chinese, English Dialog, Chinese Dialog, Multi-lingual, and Code Generation.
 

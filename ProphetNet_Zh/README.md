@@ -1,7 +1,7 @@
 # ProphetNet-Zh
 
 This repo provides the pretrained Chinese generation model ProphetNet-Zh.  
-The details are described in ProphetNet-X paper(To appear soon).
+The details are described in [ProphetNet-X paper](https://arxiv.org/abs/2104.08006).
 
 ## Dependency
 - pip install torch==1.3.0  
