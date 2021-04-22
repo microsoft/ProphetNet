@@ -1,4 +1,4 @@
-# ProphetNet-Zh
+# ProphetNet-Code
 
 This repo provides the pretrained Chinese generation model ProphetNet-Zh.  
 The details are described in [ProphetNet-X paper](https://arxiv.org/abs/2104.08006).
