@@ -34,7 +34,7 @@ To use XProphetNet:
 
 ## Preprocess
 Download the [XGLUE dataset](https://microsoft.github.io/XGLUE/), uncompress, and put cross-lingual generation NTG and QG folders under ./finetune_data.  
-[xprophetnet_preprocess.sh](https://github.com/microsoft/ProphetNet/blob/master/ProphetNet_Multi/xprophetnet_preprocess.sh) will 1) tokenize with the given bpe model. 2) generate the desired binary files.  
+Or you can directly run [xprophetnet_preprocess.sh](https://github.com/microsoft/ProphetNet/blob/master/ProphetNet_Multi/xprophetnet_preprocess.sh) to 1) dowload the raw dataset. 2) tokenize with the given bpe model. 3) generate the desired binary files.  
 It should be noticed that although XProphetNet support maximum 512 input and output tokens, first 256 tokens are kept to be consistent with other baseline models.  
 After preprocess, three types of files will appear under ./finetune_data folder:  
 1) NTG folder and QG folder which contain the original text. 

@@ -1,3 +1,7 @@
+wget https://xglue.blob.core.windows.net/xglue/xglue_full_dataset.tar.gz
+wget https://msraprophetnet.blob.core.windows.net/prophetnet/release_checkpoints/prophetnet_multi.pt
+tar -zxvf xglue_full_dataset.tar.gz
+mv xglue_full_dataset finetune_data
 mkdir ./finetune_data/NTG_tokenized
 mkdir ./finetune_data/QG_tokenized
 

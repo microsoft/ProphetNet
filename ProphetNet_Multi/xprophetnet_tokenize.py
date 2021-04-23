@@ -2,7 +2,7 @@ import sentencepiece as spm
 import os
 
 sp = spm.SentencePieceProcessor()
-sp.Load("xlmr_dictionary/sentencepiece.bpe.model")
+sp.Load("prophetnet_multi_dict/sentencepiece.bpe.model")
 
 dirs = os.listdir('finetune_data/NTG')
 for file_name in dirs:
