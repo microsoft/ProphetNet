@@ -111,5 +111,11 @@ If you extend or use this work, please cite the [paper](https://arxiv.org/pdf/20
   pages={2401--2410},
   year={2020}
 }
+@article{qi2021prophetnet,
+  title={ProphetNet-X: Large-Scale Pre-training Models for English, Chinese, Multi-lingual, Dialog, and Code Generation},
+  author={Qi, Weizhen and Gong, Yeyun and Yan, Yu and Xu, Can and Yao, Bolun and Zhou, Bartuer and Cheng, Biao and Jiang, Daxin and Chen, Jiusheng and Zhang, Ruofei and others},
+  journal={arXiv preprint arXiv:2104.08006},
+  year={2021}
+}
 ```
 [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct)
