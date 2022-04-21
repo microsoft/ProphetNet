@@ -4,27 +4,21 @@
 
 2. We have released the ProphetNet baselines for [GLGE](https://github.com/microsoft/glge) benchmark ([A New General Language Generation Evaluation Benchmark](https://arxiv.org/abs/2011.11928)) in [here](./GLGE_baselines). Have a try! :) 
 
-3. We provide [ProphetNet-X family models](https://arxiv.org/abs/2104.08006) for Chinses(ProphetNet-Zh), Multi-lingual(ProphetNet-Multi), English open domain dialog(ProphetNet-Dialog), Chinese open domain dialog(ProphetNet-Dialog-Zh), code generation(ProphetNet-Code). The details are described in [ProphetNet-X paper](https://arxiv.org/abs/2104.08006).
+3. We provide [ProphetNet-X family models](https://arxiv.org/abs/2104.08006) for Chinses(ProphetNet-Zh), Multi-lingual(ProphetNet-Multi), English open domain dialog(ProphetNet-Dialog), Chinese open domain dialog(ProphetNet-Dialog-Zh), code generation(ProphetNet-Code). The details are described in [ProphetNet-X paper](https://arxiv.org/abs/2104.08006). Different ProphetNet-X models have the only difference of the vocabulary file. Simply modify one model file and you can evaluate your idea with all the pretrained models and finetuning scripts!
 
 This repo is still developing, feel free to report bugs and we will fix them ~
 
-## What's new
+## News
 
-[ProphetNet-X models](https://arxiv.org/abs/2104.08006) are released!
+GLGE: A New General Language Generation Evaluation Benchmark [Code](https://github.com/microsoft/glge) [Paper](https://arxiv.org/abs/2011.11928) [Leaderboard](https://microsoft.github.io/glge/)  
+BANG: Bridging Autoregressive and Non-autoregressive Generation with Large Scale Pretraining [Code](https://github.com/microsoft/BANG) [Paper](https://arxiv.org/abs/2012.15525)  
+Mask Attention Networks: Rethinking and Strengthen Transformer [Code](https://github.com/LibertFan/MAN) [Paper](https://arxiv.org/abs/2103.13597v1)  
+An Enhanced Knowledge Injection Model for Commonsense Generation [Code](https://github.com/LibertFan/EKI-BART) [Paper](https://arxiv.org/abs/2012.00366)  
+Tell Me How to Ask Again: Question Data Augmentation with Controllable Rewriting in Continuous Space [Code](https://github.com/dayihengliu/CRQDA) [Paper](https://aclanthology.org/2020.emnlp-main.467.pdf)  
+Diverse, Controllable, and Keyphrase-Aware: A Corpus and Method for News Multi-Headline Generation [Code](https://github.com/dayihengliu/KeyMultiHeadline) [Paper](https://aclanthology.org/2020.emnlp-main.505.pdf)  
 
-Try new ProphetNet pretrained models for Chinese, English Dialog, Chinese Dialog, Multi-lingual, and Code Generation.
-
-Different ProphetNet-X models have the only difference of the vocabulary file. Simply modify one model file and you can evaluate your idea with all the pretrained models and finetuning scripts!
 
 
-
-## Future updates
-1. ProphetNet pretrained models for bio-medical text.
-2. ProphetNet pretrained models for protein.
-3. New ProphetNet models for long document modeling.
-4. New algorithms for Transformer/ProphetNet to reduce inference latency with no hurt to the results.
-5. New ProphetNet models for non-auto-regressive generation.
-6. For Natural Language Understanding tasks.  
 
 ## Dependency
 - pip install torch==1.3.0  
