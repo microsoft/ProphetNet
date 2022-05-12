@@ -755,7 +755,7 @@ class NgramTransformerDecoder(FairseqIncrementalDecoder):
         # TODO [(1+ngram)*T, B, C] -> [B, (1+ngram)*T, C]
         x_list = x.transpose(0, 1).chunk(1 + self.ngram, 1)
         if attn is not None:
-            attn_list = attn.transpose(0, 1).chunk(1 + self.ngram, 1)
+            attn_list = attn.chunk(1 + self.ngram, 1)
         else:
             attn_list = None
 
