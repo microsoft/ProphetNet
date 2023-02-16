@@ -2,9 +2,7 @@
 
 1. This repo provides the code for reproducing the experiments in [*ProphetNet*](https://arxiv.org/pdf/2001.04063). In the paper, we propose a new pre-trained language model called ProphetNet for sequence-to-sequence learning with a novel self-supervised objective called future n-gram prediction. 
 
-2. We have released the ProphetNet baselines for [GLGE](https://github.com/microsoft/glge) benchmark ([A New General Language Generation Evaluation Benchmark](https://arxiv.org/abs/2011.11928)) in [here](./GLGE_baselines). Have a try! :) 
-
-3. We provide [ProphetNet-X family models](https://arxiv.org/abs/2104.08006) for Chinses(ProphetNet-Zh), Multi-lingual(ProphetNet-Multi), English open domain dialog(ProphetNet-Dialog), Chinese open domain dialog(ProphetNet-Dialog-Zh), code generation(ProphetNet-Code). The details are described in [ProphetNet-X paper](https://arxiv.org/abs/2104.08006). Different ProphetNet-X models have the only difference of the vocabulary file. Simply modify one model file and you can evaluate your idea with all the pretrained models and finetuning scripts!
+2. We provide [ProphetNet-X family models](https://arxiv.org/abs/2104.08006) for Chinses(ProphetNet-Zh), Multi-lingual(ProphetNet-Multi), English open domain dialog(ProphetNet-Dialog), Chinese open domain dialog(ProphetNet-Dialog-Zh), code generation(ProphetNet-Code). The details are described in [ProphetNet-X paper](https://arxiv.org/abs/2104.08006). Different ProphetNet-X models have the only difference of the vocabulary file. Simply modify one model file and you can evaluate your idea with all the pretrained models and finetuning scripts!
 
 
 ## Dependency
