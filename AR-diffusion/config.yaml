@@ -1,0 +1,130 @@
+model:
+  name: null  # facebook/bart-base / bert-base-uncased
+  mode: s2s
+  pretrain: null
+
+exp:
+  seed: 101
+  root: ./my_output
+  name: test
+  dir: null
+
+device: cuda
+
+data:
+  path: ./data
+  name: commongen
+
+time_channels: 64
+in_channels: 64
+out_channels: 64
+diffusion_steps: 2000
+
+tgt_len: 54  # iwslt14->100 / commengen->54 / cnndm->? / xsum->150
+max_pos_len: 256  # iwslt14->256 / commengen->128 / cnndm->? / xsum->512
+
+src_lang: de
+tgt_lang: en
+
+intermediate_size: 1024
+num_attention_heads: 4
+
+fairseq:
+  use_fairseq: False
+  real_data: False
+  dist_data: False
+
+vocab_size: 10000
+
+use_mbert: False  # mt 
+use_bpe: False  # mt 
+pad_value: 0  # mt
+num_workers: 4  # bpe->4
+
+# training params
+lr_step: 40000
+warmup_steps: 4000
+total_steps: 60000
+batch_size: 384
+lr: 2e-4
+weight_decay: 0.0
+grad_clip: -1.0
+ema_rate: 0.9999
+grad_accum: 1
+
+eval_interval: 2000
+log_interval: 500
+save_interval: 10000
+
+#*************************************
+# something can change
+clip_scale: 0.0
+use_step_ratio: False
+ratio_thre: 0.7
+label_smooth: 0.0
+scale_embedding: False
+
+continue_train: False
+use_AMP: False
+grad_penalty: False
+loss_aware: False
+pred_len: False
+length_factor: 0.1
+init_weight: False
+prediction: False
+pred_len_strategy: null  # token_embed / mean_pool
+
+att_strategy: null  # txl / rotary / null
+rel_postion: False
+position_att: False
+time_att: False
+infer_self_condition: False
+self_condition: False
+schedule_sampler: uniform  # uniform / xy_uniform / xy3_uniform / loss-second-moment
+end_point_scale: 2.0
+dropout: 0.1
+att_dropout: 0.1
+
+num_samples: 1
+ddim_sample: False
+skip_timestep: 100
+
+skip_sample: False
+gen_timesteps: 20
+#*************************************
+
+# These parameters remain unchanged for now
+predict_xstart: True
+rescale_timesteps: True
+resume_checkpoint: True
+
+shared_embeds: False
+roformer_timeAtt: False
+add_layer_time: False
+use_sentence_piece: False
+load_encoder: False
+predict_x_start: False
+load_bart: False
+use_kl: False
+fix_encoder: False
+learn_pos: False
+
+sigma_small: False
+learn_sigma: False
+rescale_learned_sigmas: False
+
+logits_mode: 1  # 1 / 2
+noise_schedule: sqrt
+emb_type: random  # pretrain / random
+
+# generate params
+clip_denoised: False
+load_from_ema: False
+load_step: 0
+
+# pretrain params
+mask_pro: 0.3
+pre_max_len: 512
+
+add_retrieval_sentences: False
+retrieval_top_k: 1

@@ -17,5 +17,7 @@
 >
 > [**GENIE**](https://github.com/microsoft/ProphetNet/tree/master/GENIE): **pretrained Diffusion natural language generation models with continuous paragraph denoising**
 
+> [**AR-diffusion**](https://github.com/microsoft/ProphetNet/tree/master/AR-diffusion): **AR-Diffusion: Auto-Regressive Diffusion Model for Text Generation.**
+
 
 [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct)

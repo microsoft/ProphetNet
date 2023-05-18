@@ -1,0 +1,17 @@
+datasets==2.7.1
+einops==0.6.0
+hydra-core==1.3.0
+jsonlines==3.1.0
+mpi4py==3.1.4
+multiprocess==0.70.14
+numpy==1.23.5
+tensorboard==2.11.0
+tokenizers==0.13.2
+tqdm==4.64.1
+transformers==4.25.1
+scikit-learn==1.2.0
+sacrebleu
+future
+sacremoses
+editdistance
+numba
