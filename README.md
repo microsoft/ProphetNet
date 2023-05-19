@@ -1,4 +1,4 @@
-# ProphetNet
+# A research project for natural language generation, containing the official implementations by MSRA NLC team.
 
 
 > [**ProphetNet/ProphetNet_En**](https://github.com/microsoft/ProphetNet/tree/master/ProphetNet/ProphetNet_En): **pretrained natural language generation models with future information on English corpus**
