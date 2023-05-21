@@ -1,5 +1,3 @@
----
-
 Question: Which innovation for the car was developed by Prince Henry of Prussia in 1911?
 Thought 1: Let's search the question in google
 Action 1: Search[Which innovation for the car was developed by Prince Henry of Prussia in 1911? site: wikipedia.org]

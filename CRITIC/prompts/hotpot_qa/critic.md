@@ -1,5 +1,3 @@
----
-
 Question: Serianna is a band of what genre that combines elements of heavy metal and hardcore punk?
 Proposed Answer: Let's think step by step. Serianna is a band of metalcore genre. Metalcore is a subgenre of heavy metal and hardcore punk. So Serianna is a band of heavy metal and hardcore punk. So the answer is: heavy metal and hardcore punk.
 

@@ -1,5 +1,3 @@
----
-
 Question: When did men's figure skating become a summer Olympic sport?
 Thought 1: Let's search the question in google
 Action 1: Search[When did men's figure skating become a summer Olympic sport?]

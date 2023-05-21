@@ -1,5 +1,3 @@
----
-
 Question: Serianna is a band of what genre that combines elements of heavy metal and hardcore punk?
 Thought 1: Let's search the question in google
 Action 1: Search[Serianna is a band of what genre that combines elements of heavy metal and hardcore punk? site: wikipedia.org]

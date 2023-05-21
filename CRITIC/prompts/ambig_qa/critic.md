@@ -1,5 +1,3 @@
----
-
 Question: When did men's figure skating become a summer Olympic sport?
 Proposed Answer: Men's figure skating has never been a summer Olympic sport. It has been a part of the Winter Olympics since the first Winter Olympics in 1924. So the answer is: never
 
