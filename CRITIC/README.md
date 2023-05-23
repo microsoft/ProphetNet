@@ -1,4 +1,4 @@
-# :monocle_face: CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing
+# :thinking::hammer_and_wrench::robot: CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing
 
 This repository contains code and data for the paper "[CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing](https://arxiv.org/abs/2305.11738)".
 
@@ -37,7 +37,7 @@ Configure APIs:
 
 2. For truthfulness evaluation and fact correction, configure the [Google Search API](https://console.cloud.google.com/apis/api/customsearch.googleapis.com) in `src/tools/config.py`.
 
-3. For toxicity reduction, config [Perspective API](https://www.perspectiveapi.com/) in `src/tools/config.py`.
+3. For toxicity reduction, configure [Perspective API](https://www.perspectiveapi.com/) in `src/tools/config.py`.
 
 
 ## Getting Started
@@ -48,25 +48,25 @@ We provide example bash scripts for each task as follows:
 
 - Inference: `bash scripts/run_qa_infer.sh`
 - CRITIC: `bash scripts/run_qa_critic.sh`
-- Evluation: `python -m src.qa.evaluate`
+- Evaluation: `python -m src.qa.evaluate`
 
 
 ### Mathematical Program Synthesis (Python Interpreter)
 
 - Inference: `bash scripts/run_program_infer.sh`
 - CRITIC: `bash scripts/run_program_critic.sh`
-- Evluation: `python -m src.program.evaluate`
+- Evaluation: `python -m src.program.evaluate`
 
 
 ### Toxicity Reduction (Perpective API)
 
 - Inference: `bash scripts/run_toxicity_infer.sh`
 - CRITIC: `bash scripts/run_toxicity_critic.sh`
-- Evluation: `python -m src.toxicity.evaluate`
+- Evaluation: `python -m src.toxicity.evaluate`
 
 ## Results
 
-Examples results with *gpt-3.5-turbo*:
+Example results with *gpt-3.5-turbo*:
 
 Free-from Question Answering:
 
@@ -82,7 +82,7 @@ Mathematical Program Synthesis:
 
 Toxicity Reduction:
 <p align="center">
-    <img src="./images/toxicity_iter_gpt-3.5-turbo.png" width="800">
+    <img src="./images/toxicity_iter_gpt-3.5-turbo.png" width="850">
 </p>
 
 
