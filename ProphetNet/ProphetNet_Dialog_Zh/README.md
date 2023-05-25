@@ -18,7 +18,7 @@ We release this model for only research purpose. You can directly use this model
 For ProphetNet-Dialog-Zh, we use the pre-training corpus from [CDialGPT](https://github.com/thu-coai/CDial-GPT) and our internal data. Specifically, we crawled 18.2 million dyadic dialogues (conversation between two persons) longer than or equal to 2 turns(one turn denotes one utterance from one person) from the [Douban group](https://www.douban.com/group) which is a popular social networking service in China. We also load the pre-trained model from ProphetNet-Zh before pre-training, which already contains external knowledge from open-domain Chinese corpus. 
 ## Down-stream Tasks
 We evaluate ProphetNet-Dialog-Zh on real-world XiaoIce system with human evaluation.  
-We also report the resutls on  STC dataset, which you can use the [CDialGPT team cleaned version](https://github.com/thu-coai/CDial-GPT#evaluation).
+We also report the results on  STC dataset, which you can use the [CDialGPT team cleaned version](https://github.com/thu-coai/CDial-GPT#evaluation).
 
 ## How to use
 
