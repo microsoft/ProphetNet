@@ -24,16 +24,11 @@ You can find more details in the [paper](https://arxiv.org/abs/2305.09515).
 
 **Downstream Task Dataset:**
 
-The text generation benchmarks we use is well-known and widely used, including *XSum*, *CNN/DailyMail*, *IWSLT14* and *Commongen*. You can find more detailed information and obtain methods of the dataset [here](https://drive.google.com/).
+The text generation benchmarks we use is well-known and widely used, including *XSum*, *CNN/DailyMail*, *IWSLT14* and *Commongen*. You can find more detailed information and obtain methods of the dataset [here](https://drive.google.com/drive/folders/1Bjbx2toMg7HLFgIaEyeu1CccAIZ4TWJS?usp=share_link).
 
 **Model**
 
-We have released the checkpoint of the AR-Diffusion for each dataset (6-layer encoder, and 6-layer decoder):
-
-- AR-Diffusion XSum [[link](https://drive.google.com/)]
-- AR-Diffusion CNN/DailyMail [[link](https://drive.google.com/)]
-- AR-Diffusion IWSLT14 [[link](https://drive.google.com/)]
-- AR-Diffusion Commongen [[link](https://drive.google.com/)]
+We have released the checkpoint of the AR-Diffusion [here](https://drive.google.com/drive/folders/1woaccD2mdq7Vzrs60-gBqFoydFdHlMvz?usp=share_link) for each dataset (6-layer encoder, and 6-layer decoder):
 
 ## 💡 Training
 
@@ -97,6 +92,10 @@ done
 ./.conda/envs/torch/bin/python ./eval_utils/mbr/mbr_select.py \
 --data_name=$DATA_NAME --num=$NUM --process=50 # --exp_name=500
 ```
+
+## Repo Reference
+
+This repo is partially referred to [Diffusion-LM](https://github.com/XiangLi1999/Diffusion-LM) and [GENIE](https://github.com/microsoft/ProphetNet/tree/master/GENIE).
 
 ## 📜 Citation
 
