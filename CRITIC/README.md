@@ -37,7 +37,7 @@ Configure APIs:
 
 2. For truthfulness evaluation and fact correction, configure the [Google Search API](https://console.cloud.google.com/apis/api/customsearch.googleapis.com) in `src/tools/config.py`.
 
-3. For toxicity reduction, configure [Perspective API](https://www.perspectiveapi.com/) in `src/tools/config.py`.
+3. For toxicity reduction, you can follow this [tutorial](https://developers.google.com/codelabs/setup-perspective-api) and configure [Perspective API](https://www.perspectiveapi.com/) in `src/tools/config.py`.
 
 
 ## 🚀 Getting Started
