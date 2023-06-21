@@ -1,8 +1,8 @@
-# :thinking::hammer_and_wrench::robot: CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing
+# 🤔🛠️🤖 CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing
 
 This repository contains code and data for the paper "[CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing](https://arxiv.org/abs/2305.11738)".
 
-## Introduction
+## 💡 Introduction
 
 **CRITIC** empowers LLMs to validate and rectify themselves through interaction with external tools.
 
@@ -14,14 +14,14 @@ This repository contains code and data for the paper "[CRITIC: Large Language Mo
 > Inspired by this observation, we introduce a framework called CRITIC that allows LLMs, which are essentially “black boxes” to validate and progressively amend their own outputs in a manner similar to human interaction with tools.
 
 
-## Examples
+## 💬 Examples
 
 <p align="center">
     <img src="./images/demo.png" width="1000">
 </p>
 
 
-## Setup
+## 🛠️ Setup
 
 We recommend the use of conda environments:
 
@@ -40,7 +40,7 @@ Configure APIs:
 3. For toxicity reduction, configure [Perspective API](https://www.perspectiveapi.com/) in `src/tools/config.py`.
 
 
-## Getting Started
+## 🚀 Getting Started
 
 We provide example bash scripts for each task as follows:
 
@@ -64,7 +64,7 @@ We provide example bash scripts for each task as follows:
 - CRITIC: `bash scripts/run_toxicity_critic.sh`
 - Evaluation: `python -m src.toxicity.evaluate`
 
-## Results
+## 🎯 Results
 
 Example results with *gpt-3.5-turbo*:
 
@@ -86,7 +86,7 @@ Toxicity Reduction:
 </p>
 
 
-## Citation
+## ❤️ Citation
 
 ```
 @misc{gou2023critic,

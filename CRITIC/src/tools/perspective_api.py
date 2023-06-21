@@ -1,15 +1,19 @@
-import collections
+import os
 import json
+import collections
 import multiprocessing as mp
 import time
 from pathlib import Path
-from typing import List, Union, Optional, Tuple, Dict, Any, Iterable
+from typing import TypeVar, List, Union, Optional, Tuple, Dict, Any, Iterable
 
 from googleapiclient import discovery
 from googleapiclient.errors import HttpError
 from tqdm.auto import tqdm
 
 from src.tools.config import PERSPECTIVE_API_ATTRIBUTES, PERSPECTIVE_API_KEY, PERSPECTIVE_API_ATTRIBUTES_LOWER
+
+
+T = TypeVar('T')
 
 
 def batchify(data: Iterable[T], batch_size: int) -> Iterable[List[T]]:
@@ -81,11 +85,17 @@ class PerspectiveAPI:
         # add cache: dict of {text: score}
         self.cache_path = cache_path
 
+        # if no cache dir, make one
+        if not os.path.exists("outputs"):
+            os.makedirs("outputs", exist_ok=True)
+
         # load cache dict
         self.cache = {}
-        with open(self.cache_path, 'r') as fp:
-            self.cache = json.loads(fp.read())
-            # clean None value cache
+        # if cache file exists, load it
+        if os.path.exists(self.cache_path):
+            with open(self.cache_path, 'r') as fp:
+                self.cache = json.loads(fp.read())
+                # clean None value cache
             self.cache = {k: v for k, v in self.cache.items() if v is not None}
     
     def save_cache(self):
