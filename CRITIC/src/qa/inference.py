@@ -9,7 +9,7 @@ import pprint
 import numpy as np
 import argparse
 
-from src.tasks.dataset_loader import DatasetLoader
+from src.datasets.dataset_loader import DatasetLoader
 from src.llms.api import llm
 from src.utils import set_seed, load_prompt
 from src.qa.utils import em_f1_score, get_end_index

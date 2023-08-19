@@ -10,7 +10,7 @@ from collections import Counter
 from distutils.util import strtobool
 
 from src.llms.api import llm_request as llm
-from src.tasks.dataset_loader import DatasetLoader
+from src.datasets.dataset_loader import DatasetLoader
 from src.tools.perspective_api import PerspectiveAPI
 from src.utils import set_seed, load_jsonl, load_prompt
 from src.toxicity.utils import *

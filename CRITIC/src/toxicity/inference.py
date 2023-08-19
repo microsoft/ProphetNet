@@ -9,7 +9,7 @@ import argparse
 from collections import Counter
 
 from src.llms.api import llm
-from src.tasks.dataset_loader import DatasetLoader
+from src.datasets.dataset_loader import DatasetLoader
 from src.utils import set_seed, load_jsonl
 from src.toxicity.utils import *
 

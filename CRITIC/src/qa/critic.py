@@ -11,7 +11,7 @@ import argparse
 from collections import Counter
 from distutils.util import strtobool
 
-from src.tasks.dataset_loader import DatasetLoader
+from src.datasets.dataset_loader import DatasetLoader
 from src.llms.api import llm
 from src.utils import set_seed, load_jsonl, list_rindex, load_prompt
 from src.qa.utils import em_f1_score, multi_ref_score, extract_cot_answer, get_end_index, is_null_answer
