@@ -35,7 +35,7 @@ Repo for the paper "[CRITIC: Large Language Models Can Self-Correct with Tool-In
 ## 💡 Introduction
 
 <!-- set larger font size for the following text-->
-<p style="font-size:15px">
+<p style="font-size:1.05rem">
 For the first time, we find that LLMs' Self-Verification and Self-Correction are <b>unreliable</b>; and we propose <b>CRITIC</b>, which enables LLMs to validate and rectify themselves through interaction with external tools.
 </p>
 
@@ -119,7 +119,7 @@ Toxicity Reduction:
 </p>
 
 
-## ☕️️ Citation
+## ☕️ Citation
 
 ```
 @misc{gou2023critic,
