@@ -1,7 +1,9 @@
 <h1 align="center">
 🤔🛠️🤖 CRITIC:
 <br>
-Large Language Models Can Self-Correct with Tool-Interactive Critiquing
+Large Language Models Can Self-Correct
+<br>
+with Tool-Interactive Critiquing
 </h1>
 
 <div align="center">
@@ -32,7 +34,10 @@ Repo for the paper "[CRITIC: Large Language Models Can Self-Correct with Tool-In
 
 ## 💡 Introduction
 
-**CRITIC** empowers LLMs to validate and rectify themselves through interaction with external tools.
+<!-- set larger font size for the following text-->
+<p style="font-size:15px">
+For the first time, we find that LLMs' Self-Verification and Self-Correction are <b>unreliable</b>; and we propose <b>CRITIC</b>, which enables LLMs to validate and rectify themselves through interaction with external tools.
+</p>
 
 <p align="center">
     <img src="./images/framework.png" width="1000">
