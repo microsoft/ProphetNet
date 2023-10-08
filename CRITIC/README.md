@@ -1,6 +1,34 @@
-# 🤔🛠️🤖 CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing
+<h1 align="center">
+🤔🛠️🤖 CRITIC:
+<br>
+Large Language Models Can Self-Correct with Tool-Interactive Critiquing
+</h1>
 
-This repository contains code and data for the paper "[CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing](https://arxiv.org/abs/2305.11738)".
+<div align="center">
+
+![](https://img.shields.io/badge/Task-Question%20Answering-red)
+![](https://img.shields.io/badge/Task-Commonsense%20Reasoning-yellow)
+![](https://img.shields.io/badge/Task-Mathematical%20Reasoning-orange)
+![](https://img.shields.io/badge/Task-Hallucination%20Detection-purple)
+![](https://img.shields.io/badge/Task-Safety-blue)
+![](https://img.shields.io/badge/Code%20License-MIT-green)
+<br>
+
+</div>
+
+<p align="center">
+  <a href="#-quick-start"><b>[Quick Start]</b></a> •
+  <!-- <a href="https://llm-agents.github.io/critic/"><b>[Website]</b></a> • -->
+  <a href="https://arxiv.org/pdf/2305.11738.pdf"><b>[Paper]</b></a> •
+  <a href="#%EF%B8%8F-citation"><b>[Citation]</b></a>
+</p>
+
+Repo for the paper "[CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing](https://arxiv.org/abs/2305.11738)".
+
+## 🔥 News
+
+- In our [updated paper](https://arxiv.org/abs/2305.11738), we add CRITIC results of open-source LLaMA-2 models from 7B to 70B on three QA / commonsense reasoning tasks, and three mathematical code synthesis tasks.
+
 
 ## 💡 Introduction
 
@@ -17,7 +45,7 @@ This repository contains code and data for the paper "[CRITIC: Large Language Mo
 ## 💬 Examples
 
 <p align="center">
-    <img src="./images/demo.png" width="1000">
+    <img src="./images/demo.png" width="900">
 </p>
 
 
@@ -40,7 +68,7 @@ Configure APIs:
 3. For toxicity reduction, you can follow this [tutorial](https://developers.google.com/codelabs/setup-perspective-api) and configure [Perspective API](https://www.perspectiveapi.com/) in `src/tools/config.py`.
 
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
 We provide example bash scripts for each task as follows:
 
@@ -86,7 +114,7 @@ Toxicity Reduction:
 </p>
 
 
-## ❤️ Citation
+## ☕️️ Citation
 
 ```
 @misc{gou2023critic,
