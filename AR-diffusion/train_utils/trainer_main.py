@@ -7,13 +7,13 @@ import torch.distributed as dist
 from sacremoses import MosesTokenizer
 from transformers import set_seed, AutoTokenizer
 
-from train_utils.pretrain import PretrainLoop
+# from train_utils.pretrain import PretrainLoop
 from train_utils.trainer import TrainLoop
 from utils import load_states_from_checkpoint
 from model_utils.create_model import create_model, create_gaussian_diffusion
 from train_utils.resample import create_named_schedule_sampler
 from data_utils.s2s_dataset import load_s2s_data
-from data_utils.bing_dataset import load_ads_data
+# from data_utils.bing_dataset import load_ads_data
 from data_utils.tokenizer_utils import create_tokenizer
 # from data_utils.retrieved_dataset import load_retri_data, RetrieveDataset
 
@@ -88,48 +88,48 @@ def main(config):
     #     )
     # else:
     
-    if config.data.name == 'bing_ads':
-        train_dataloader, dev_dataloader = load_ads_data(
-            config, tokenizer=tokenizer,
-        )
+    # if config.data.name == 'bing_ads':
+    #     train_dataloader, dev_dataloader = load_ads_data(
+    #         config, tokenizer=tokenizer,
+    #     )
 
-    elif config.data.name == 'pretrain':
-        dataname_list = ['book1','book2','book3','book4','book5',
-                'wiki1', 'wiki2', 'wiki3', 'wiki4', 'wiki5',
-                'stories1','stories2','stories3','stories4','stories5',
-                'openweb1','openweb2','openweb3','openweb4','openweb5',
-                'realnews1', 'realnews2', 'realnews3', 'realnews4', 'realnews5',
-                'realnews6', 'realnews7', 'realnews8', 'realnews9','realnews10']
-        train_dataloader, dev_dataloader = dataname_list, None
+    # elif config.data.name == 'pretrain':
+    #     dataname_list = ['book1','book2','book3','book4','book5',
+    #             'wiki1', 'wiki2', 'wiki3', 'wiki4', 'wiki5',
+    #             'stories1','stories2','stories3','stories4','stories5',
+    #             'openweb1','openweb2','openweb3','openweb4','openweb5',
+    #             'realnews1', 'realnews2', 'realnews3', 'realnews4', 'realnews5',
+    #             'realnews6', 'realnews7', 'realnews8', 'realnews9','realnews10']
+    #     train_dataloader, dev_dataloader = dataname_list, None
         
-    else:
-        train_dataloader, dev_dataloader = load_s2s_data(
-            config, tokenizer=tokenizer,
-        )
+    # else:
+    train_dataloader, dev_dataloader = load_s2s_data(
+        config, tokenizer=tokenizer,
+    )
 
     # training section
     if dist.get_rank() == 0:
         print("training Diffusion LM model...")
         
-    if config.data.name == 'pretrain':
-        PretrainLoop(
-            config=config,
-            tokenizer=tokenizer,
-            model=model,
-            diffusion=diffusion,
-            data=train_dataloader,
-            dev_data=dev_dataloader,
-            schedule_sampler=schedule_sampler,
-        ).run_loop()
-    else:
-        TrainLoop(
-            config=config,
-            model=model,
-            diffusion=diffusion,
-            data=train_dataloader,
-            dev_data=dev_dataloader,
-            schedule_sampler=schedule_sampler,
-        ).run_loop()
+    # if config.data.name == 'pretrain':
+    #     PretrainLoop(
+    #         config=config,
+    #         tokenizer=tokenizer,
+    #         model=model,
+    #         diffusion=diffusion,
+    #         data=train_dataloader,
+    #         dev_data=dev_dataloader,
+    #         schedule_sampler=schedule_sampler,
+    #     ).run_loop()
+    # else:
+    TrainLoop(
+        config=config,
+        model=model,
+        diffusion=diffusion,
+        data=train_dataloader,
+        dev_data=dev_dataloader,
+        schedule_sampler=schedule_sampler,
+    ).run_loop()
 
 
 if __name__ == "__main__":

@@ -88,7 +88,7 @@ echo "gen num $j"
 j=$(($j+1))
 done
 
-
+#! before runing this script, please modify the directories inside.
 ./.conda/envs/torch/bin/python ./eval_utils/mbr/mbr_select.py \
 --data_name=$DATA_NAME --num=$NUM --process=50 # --exp_name=500
 ```
