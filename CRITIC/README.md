@@ -25,7 +25,7 @@ with Tool-Interactive Critiquing
   <a href="#%EF%B8%8F-citation"><b>[Citation]</b></a>
 </p>
 
-Repo for the paper "[CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing](https://arxiv.org/abs/2305.11738)".
+Repo for the paper "[CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing](https://arxiv.org/abs/2305.11738)" [ICLR'24]
 
 ## 🔥 News
 
@@ -71,6 +71,8 @@ Configure APIs:
 2. For truthfulness evaluation and fact correction, configure the [Google Search API](https://console.cloud.google.com/apis/api/customsearch.googleapis.com) in `src/tools/config.py`.
 
 3. For toxicity reduction, you can follow this [tutorial](https://developers.google.com/codelabs/setup-perspective-api) and configure [Perspective API](https://www.perspectiveapi.com/) in `src/tools/config.py`.
+
+> 🔥🔥 For an alternative to Google API, try our **free** web scraping tools available at [LLM-Agent-Web-Tools](https://github.com/ZubinGou/llm-agent-web-tools).
 
 
 ## 🚀 Quick Start
