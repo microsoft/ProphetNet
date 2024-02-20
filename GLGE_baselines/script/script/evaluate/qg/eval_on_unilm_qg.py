@@ -170,7 +170,7 @@ def eval(out_file, src_file, tgt_file, isDIn=False, num_pairs=500):
     output = []
     with open(out_file, 'r') as infile:
         for line in infile:
-            line = fix_tokenization(line[:-1].strip()).lower()
+            line = line[:-1].strip().lower()
             output.append(line)
 
     for idx, pair in enumerate(pairs):
