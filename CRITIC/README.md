@@ -124,12 +124,12 @@ Toxicity Reduction:
 ## ☕️ Citation
 
 ```
-@misc{gou2023critic,
-      title={CRITIC: Large Language Models Can Self-Correct with Tool-Interactive Critiquing}, 
-      author={Zhibin Gou and Zhihong Shao and Yeyun Gong and Yelong Shen and Yujiu Yang and Nan Duan and Weizhu Chen},
-      year={2023},
-      eprint={2305.11738},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@inproceedings{
+    gou2024critic,
+    title={{CRITIC}: Large Language Models Can Self-Correct with Tool-Interactive Critiquing},
+    author={Zhibin Gou and Zhihong Shao and Yeyun Gong and yelong shen and Yujiu Yang and Nan Duan and Weizhu Chen},
+    booktitle={The Twelfth International Conference on Learning Representations},
+    year={2024},
+    url={https://openreview.net/forum?id=Sx038qxjek}
 }
 ```
